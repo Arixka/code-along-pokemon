@@ -14,9 +14,9 @@ const {
 } = require('../controller/user.controller')
 
 router.get('/me', authenticate, whoami)
-router.get('/', authenticate, getUser)
+router.get('/', authenticate, getUser) // get users by query, returns array of users
 router.get('/:userId', authenticate, getUserById)
-router.delete('/', authenticate, authorize(['admin']), deleteUser)
-router.put('/', authenticate, updateUser)
+router.delete('/:userId', authenticate, authorize(['admin']), deleteUser)
+router.put('/', authenticate, authorize(['master', 'admin']), updateUser) // update user by query
 
 module.exports = router

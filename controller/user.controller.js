@@ -17,7 +17,7 @@ exports.getUserById = (req, res) => {
 }
 
 exports.deleteUser = (req, res) => {
-  User.findOneAndDelete(req.query)
+  User.findByIdAndDelete(req.params.userId)
     .then(user => res.status(200).send(user.name + ' has been deleted'))
     .catch(err => res.status(500).json(err))
 }
